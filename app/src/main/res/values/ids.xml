@@ -1,0 +1,9 @@
+<resources>
+    <item name="sandbox_recipient" type="id"/>
+    <item name="sandbox_input" type="id"/>
+    <item name="sandbox_send" type="id"/>
+    <item name="sandbox_status" type="id"/>
+    <item name="control_halo" type="id"/>
+    <item name="control_status" type="id"/>
+    <item name="control_recover" type="id"/>
+</resources>

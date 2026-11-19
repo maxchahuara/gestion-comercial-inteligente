@@ -1,0 +1,18 @@
+Vosk Android 0.3.75
+Copyright Alpha Cephei Inc. and Vosk contributors.
+Source: https://github.com/alphacep/vosk-api
+License: Apache License 2.0 (Apache-2.0.txt).
+
+Spanish speech recognition model, unchanged:
+vosk-model-small-es-0.42
+Publisher: Alpha Cephei, https://alphacephei.com/vosk/models
+License: Apache License 2.0, as declared in the publisher's model list.
+Archive SHA-256: 09b239888f633ef2f0b4e09736e3d9936acfd810bc65d53fad45261762c6511f
+
+Java Native Access (JNA) 5.18.1
+Copyright JNA contributors. https://github.com/java-native-access/jna
+JNA offers Apache-2.0 OR LGPL-2.1-or-later. This distribution elects Apache-2.0.
+Original project notices are retained in its distributed artifacts.
+
+All modifications to the original application's audio integration are Campana code.
+No Vosk source or model modifications were made.

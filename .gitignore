@@ -1,0 +1,17 @@
+.gradle/
+.kotlin/
+**/build/
+local.properties
+*.jks
+*.keystore
+*.p12
+signing.properties
+.env
+keystore.properties
+.idea/
+captures/
+*.log
+*.hprof
+dist/
+.codex-remote-attachments/
+.codex-attachments/

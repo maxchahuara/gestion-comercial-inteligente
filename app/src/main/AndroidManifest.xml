@@ -1,0 +1,66 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <permission android:name="org.campana.agent.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature"/>
+    <uses-permission android:name="org.campana.agent.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+    <queries>
+        <intent><action android:name="android.intent.action.SEND"/><data android:mimeType="text/plain"/></intent>
+        <package android:name="com.whatsapp"/>
+        <package android:name="com.instagram.android"/>
+        <package android:name="com.facebook.orca"/>
+        <package android:name="com.facebook.katana"/>
+        <intent><action android:name="android.intent.action.VIEW"/><data android:scheme="https"/></intent>
+    </queries>
+    <application android:name=".CampaignApp" android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher" android:allowBackup="false" android:dataExtractionRules="@xml/data_extraction_rules"
+        android:usesCleartextTraffic="false" android:networkSecurityConfig="@xml/network_security"
+        android:theme="@style/Theme.Campana" android:supportsRtl="true">
+        <activity android:name=".MainActivity" android:exported="true" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".phone.SandboxActivity" android:exported="false"/>
+        <activity android:name=".audio.VoiceReceiverActivity" android:exported="true" android:enabled="false" android:excludeFromRecents="true" android:label="@string/voice_share_label">
+            <intent-filter><action android:name="android.intent.action.SEND"/><category android:name="android.intent.category.DEFAULT"/><data android:mimeType="audio/*"/><data android:mimeType="application/ogg"/></intent-filter>
+        </activity>
+        <activity android:name=".phone.PostLinkReceiverActivity" android:exported="true" android:enabled="false" android:excludeFromRecents="true" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
+        <service android:name=".phone.PhoneAccessibilityService" android:exported="true"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter><action android:name="android.accessibilityservice.AccessibilityService"/></intent-filter>
+            <meta-data android:name="android.accessibilityservice" android:resource="@xml/accessibility"/>
+        </service>
+        <service android:name=".phone.SocialNotificationService" android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter><action android:name="android.service.notification.NotificationListenerService"/></intent-filter>
+        </service>
+        <receiver android:name=".jobs.BootReceiver" android:exported="false">
+            <intent-filter><action android:name="android.intent.action.BOOT_COMPLETED"/></intent-filter>
+        </receiver>
+        <receiver android:name=".jobs.PauseReceiver" android:exported="false"/>
+        <service android:name=".jobs.AgentRuntimeService" android:exported="false" android:foregroundServiceType="specialUse">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="User-enabled continuous campaign agent session with visible recovery overlay, native incoming-message handling and immediate owner takeover; ends on owner pause."/>
+        </service>
+        <service android:name="androidx.work.impl.foreground.SystemForegroundService" android:exported="false"
+            android:foregroundServiceType="specialUse" tools:node="merge">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="User-authorized on-device campaign execution across installed social apps, with visible recovery overlay and pause action; stops when the task ends."/>
+        </service>
+        <provider android:name="androidx.core.content.FileProvider"
+            android:authorities="org.campana.agent.files" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
+    </application>
+</manifest>

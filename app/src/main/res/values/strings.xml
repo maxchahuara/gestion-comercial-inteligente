@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">Gestión Comercial Inteligente | {ℂℎ}</string>
+    <string name="voice_share_label">Transcribir audio · {ℂℎ}</string>
+    <string name="receiving_post_link">Recibiendo el enlace de la publicación…</string>
+    <string name="control_status">El agente tiene el control</string>
+    <string name="control_recover">Recuperar control</string>
+    <string name="accessibility_description">Permite al agente observar y operar las redes sociales que autorices. Puede leer texto visible y pulsar controles. Puedes pausarlo o desactivarlo desde Ajustes.</string>
+</resources>
